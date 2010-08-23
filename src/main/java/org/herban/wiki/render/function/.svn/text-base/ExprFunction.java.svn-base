@@ -1,0 +1,21 @@
+package de.herban.mylist.client.wiki.render.function;
+
+import de.herban.mylist.client.wiki.Handler;
+import de.herban.mylist.client.wiki.filter.WPFunction;
+
+public class ExprFunction extends AbstractFunction {
+
+
+	public ExprFunction(Handler handler) {
+		 super(handler);
+	}
+	@Override
+	public void execute(WPFunction function) {
+		// TODO Auto-generated method stub
+
+	}
+
+
+
+
+}

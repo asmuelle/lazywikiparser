@@ -1,0 +1,26 @@
+package de.herban.mylist.client.wiki.render.function;
+
+import de.herban.mylist.client.wiki.Handler;
+import de.herban.mylist.client.wiki.filter.WPFunction;
+
+public class IfFunction extends AbstractFunction {
+
+
+	public IfFunction(Handler handler) {
+		super(handler);
+
+	}
+
+	@Override
+	public void execute(WPFunction function) {
+
+		StringBuffer condString=parse(function.getParamValue(0));
+
+		if (condString.length()>0) {
+		  handler.handlePlainText(parse(function.getParamValue(1)).toString());
+		} else {
+		  handler.handlePlainText(parse(function.getParamValue(2)).toString());
+		}
+	}
+
+}

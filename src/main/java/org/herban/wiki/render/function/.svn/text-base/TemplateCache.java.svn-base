@@ -1,0 +1,25 @@
+package de.herban.mylist.client.wiki.render.function;
+
+import java.util.HashMap;
+
+import de.herban.mylist.client.wiki.render.template.GenTemplate;
+import de.herban.mylist.client.wiki.render.template.TemplateInstance;
+
+public class TemplateCache {
+    /*
+     * we distinguish between Inline and extra View templates
+     * inline templates are rendered syncronous, extra view templates asyncronous
+     * inline templates may be placed in html body or later resource bundles
+     * extra view templates will be loaded on demand
+     */
+	private HashMap<String, TemplateInstance> cache=new HashMap<String, TemplateInstance>();
+	public   GenTemplate get(String name) {
+		 
+		return cache.get(name);
+	}
+	
+	public void put(String name, TemplateInstance t){
+		cache.put(name, t);
+	}
+
+}

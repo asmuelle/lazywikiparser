@@ -1,0 +1,7 @@
+package de.herban.mylist.client.wiki.render.template;
+
+public interface TemplateEvaluatorIf {
+
+	public abstract void evaluate();
+
+}

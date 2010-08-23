@@ -1,0 +1,28 @@
+package de.herban.mylist.client.wiki.render.function;
+
+import de.herban.mylist.client.wiki.Handler;
+import de.herban.mylist.client.wiki.ParserFunction;
+import de.herban.mylist.client.wiki.StandardHandler;
+import de.herban.mylist.client.wiki.TemplateParser;
+
+public abstract class AbstractFunction implements ParserFunction{
+	 protected Handler handler;
+		public AbstractFunction(Handler handler) {
+			this.handler=handler;
+		}
+
+
+
+    public static   StringBuffer  parse(String value )
+     {
+    	StringBuffer b=new StringBuffer();
+    	Handler h=(Handler) new StandardHandler(b);
+    	try {
+			new TemplateParser(new StringBuffer(value),h,0).parse();
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+    	return b;
+    }
+}

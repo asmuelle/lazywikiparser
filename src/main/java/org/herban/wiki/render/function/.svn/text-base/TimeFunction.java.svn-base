@@ -1,0 +1,20 @@
+package de.herban.mylist.client.wiki.render.function;
+
+import de.herban.mylist.client.wiki.Handler;
+import de.herban.mylist.client.wiki.filter.WPFunction;
+
+public class TimeFunction extends AbstractFunction {
+
+	public TimeFunction(Handler handler) {
+		super(handler);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public
+	void execute(WPFunction function) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,11 @@
+package de.herban.mylist.client.wiki.render.template;
+
+import de.herban.mylist.client.wiki.Handler;
+import de.herban.mylist.client.wiki.filter.WPTemplate;
+
+public interface GenTemplate {
+
+	public abstract void replaceParameters(WPTemplate template, Handler handler) throws Exception;
+
+
+}
