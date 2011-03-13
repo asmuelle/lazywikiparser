@@ -12,16 +12,142 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.5</maven.compiler.source>
-    <maven.compiler.target>1.5</maven.compiler.target>
+    <gwt.version>2.2.0</gwt.version>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
+     <dependency>
+                        <groupId>junit</groupId>
+                        <artifactId>junit</artifactId>
+                        <version>4.4</version>
+                        <scope>test</scope>
+                </dependency>
   </dependencies>
+ <build>
+
+                 
+                <plugins>
+                        <plugin>
+                                <groupId>org.codehaus.mojo</groupId>
+                                <artifactId>gwt-maven-plugin</artifactId>
+                                <version>2.1.0-1</version>
+                                <dependencies>
+                                        <dependency>
+                                                <groupId>com.google.gwt</groupId>
+                                                <artifactId>gwt-user</artifactId>
+                                                <version>${gwt.version}</version>
+                                                         
+                                        </dependency>
+                                        <dependency>
+                                                <groupId>com.google.gwt</groupId>
+                                                <artifactId>gwt-dev</artifactId>
+                                                <version>${gwt.version}</version>
+                                                         
+                                        </dependency>
+                                        <dependency>
+                                                <groupId>com.google.gwt</groupId>
+                                                <artifactId>gwt-servlet</artifactId>
+                                                <version>${gwt.version}</version>
+                                                         
+                                        </dependency>
+                                </dependencies>
+                                <configuration>
+                                 <compileReport>false</compileReport>
+                                        <logLevel>INFO</logLevel>
+                                        <style>OBFUSCATED</style>
+                                        <gwtVersion>2.1.1</gwtVersion>
+                                        <runTarget>/LazyWikiParser.html</runTarget>
+                                        <hostedWebapp>${project.build.directory}/${project.build.finalName}</hostedWebapp>
+                                        <modules>
+                                                <module>com.bead.userscope.Userscope</module>
+                                        </modules>
+
+
+                                        <copyWebapp>true</copyWebapp>
+
+                                </configuration>
+                                <executions>
+                                        <execution>
+                                                <id>gwtcompile</id>
+                                                <phase>prepare-package</phase>
+                                                <goals>
+                                                        <goal>compile</goal>
+                                                </goals>
+                                        </execution>
+                                 
+                                        <execution>
+                                                <id>gwtrun</id>
+                                                <goals>
+                                                        <goal>run</goal>
+                                                </goals>
+                                        </execution>
+                                </executions>
+                        </plugin>
+
+                        <!-- Delete gwt generated stuff -->
+                        <plugin>
+                                <artifactId>maven-clean-plugin</artifactId>
+                                <version>2.4.1</version>
+                                <configuration>
+                                        <filesets>
+                                                <fileset>
+                                                        <directory>src/main/webapp/userscope</directory>
+                                                </fileset>
+                                                <fileset>
+                                                        <directory>src/main/java/com/bead/userscope/client/generated</directory>
+                                                </fileset>
+                                                <fileset>
+                                                        <directory>src/main/webapp/WEB-INF/classes</directory>
+                                                </fileset>
+                                                <fileset>
+                                                        <directory>tomcat</directory>
+                                                </fileset>
+                                                <fileset>
+                                                        <directory>www-test</directory>
+                                                </fileset>
+                                                <fileset>
+                                                        <directory>.gwt-tmp</directory>
+                                                </fileset>
+                                        </filesets>
+                                </configuration>
+                        </plugin>
+
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-compiler-plugin</artifactId>
+                                <version>2.0.2</version>
+                                <configuration>
+                                        <source>1.6</source>
+                                        <target>1.6</target>
+                                </configuration>
+                        </plugin>
+                  
+                </plugins>
+                <outputDirectory>${project.build.directory}/WEB-INF/classes</outputDirectory>
+
+        </build>
+        <reporting>
+                <plugins>
+                        <plugin>
+                                <groupId>net.sf.doodleproject</groupId>
+                                <artifactId>doxygen-maven-plugin</artifactId>
+                                <version>2.2</version>
+                        </plugin>
+
+                </plugins>
+        </reporting>
+        <distributionManagement>
+                <snapshotRepository>
+                        <id>nexus</id>
+                        <name>Snapshots</name>
+                        <url>file:/home/amu/sonatype-work/nexus/storage/snapshots/</url>
+                </snapshotRepository>
+                <repository>
+                        <id>nexus</id>
+                        <name>releases</name>
+                        <url>file:/home/amu/sonatype-work/nexus/storage/releases/</url>
+                </repository>
+        </distributionManagement>
 </project>
